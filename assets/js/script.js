@@ -14,7 +14,7 @@ function processOptions(form) {
         }
     }
     form.delete("options");
-    form.append("optioins", optArr.join());
+    form.append("options", optArr.join());
 
     return form;
 }
@@ -37,6 +37,7 @@ async function postForm(e) {
                             displayErrors(data);
                         } else {
                             throw new Error(data.error);
+                            displayExecption(data);
                         }
 }
 
@@ -81,4 +82,17 @@ function displayStatus (data) {
     document.getElementById("resultsModalTitle").innerText = heading;
     document.getElementById("results-content").innerHTML = msg;
     resultsModal.show()
+}
+
+async function displayExecption (data) {
+    let heading = `JSHints exceptions`;
+
+
+    results = `<div>The API returned status code ${data.status_code}</div>`;
+    results += `<div>Error number: ${data.error_no}</div>`;
+    results += `<div>Error text: ${data.error}</div>`;
+
+    document.getElementById("resultsModalTitle").innerText = heading;
+    document.getElementById("results-content").innerHTML = results;
+    resultsModal.show();
 }
