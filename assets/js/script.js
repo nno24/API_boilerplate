@@ -36,8 +36,8 @@ async function postForm(e) {
                         if(response.ok) {
                             displayErrors(data);
                         } else {
-                            throw new Error(data.error);
                             displayExecption(data);
+                            throw new Error(data.error);
                         }
 }
 
@@ -70,6 +70,7 @@ async function getStatus(e) {
     if (response.ok) {
         displayStatus(data);
     } else {
+        displayExecption(data);
         throw new Error(data.error);
     }
 }
